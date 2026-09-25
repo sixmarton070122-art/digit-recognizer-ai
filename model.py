@@ -1,5 +1,4 @@
-from torch import nn, flatten, optim
-import math
+from torch import nn, flatten
 
 class DigitClassifier(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):
