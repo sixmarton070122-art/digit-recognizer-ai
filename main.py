@@ -39,8 +39,6 @@ epochs = 60
 criterion = nn.CrossEntropyLoss()
 
 for epoch in range(epochs):
-    for i,(images, targets) in enumerate(train_loader):
-        x = images
-        
+    for i,(images, targets) in enumerate(train_loader):        
         predictions = model(images)
         loss = criterion(predictions, targets)
