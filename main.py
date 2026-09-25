@@ -37,8 +37,19 @@ digit_recognizer = model.DigitClassifier(input_size=input_size, hidden_size=hidd
 
 epochs = 60
 criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(
+    model.parameters(),
+    lr=0.001, # Learning rate
+    betas=(0.9, 0.999), # Decay rates for moments
+    eps=1e-8, # Numerical stability
+    weight_decay=0, # L2 regularization
+    amsgrad=False # AMSGrad variant
+)
 
 for epoch in range(epochs):
     for i,(images, targets) in enumerate(train_loader):        
         predictions = model(images)
         loss = criterion(predictions, targets)
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
