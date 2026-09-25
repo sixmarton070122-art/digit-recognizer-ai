@@ -1,5 +1,7 @@
-from torch.utils.data import random_split, DataLoader
+from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
+
+import model
 
 transform = transforms.Compose([
     transforms.ToTensor(),
@@ -25,3 +27,9 @@ except Exception as e:
 
 train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True)
 test_dataset = DataLoader(test_dataset, batch_size=100, shuffle=True)
+
+input_size=28**2
+hidden_size = 49
+num_classes = 10
+
+model = model.DigitClassifier(input_size=input_size, hidden_size=hidden_size, num_classes=num_classes)
