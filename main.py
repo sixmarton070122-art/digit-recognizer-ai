@@ -2,9 +2,7 @@ import torch
 from torchvision import datasets, transforms
 
 transform = transforms.Compose([
-    transforms.Resize((28, 28)),
     transforms.ToTensor(),
-    transforms.Normalize((0.1307,), (0.3081,))
 ])
 
 try:
@@ -24,3 +22,11 @@ try:
 except Exception as e:
     print(f"Error loading MNIST dataset: {e}")
     exit(1)
+
+print(len(train_dataset))
+print(len(test_dataset))
+print(train_dataset[0][0].shape)
+print(train_dataset[0][0].min())
+print(train_dataset[0][0].max())
+print(train_dataset[0][1])
+print(type(train_dataset[0][1]))
