@@ -1,13 +1,12 @@
 import torch
 from torchvision import datasets, transforms
-import matplotlib.pyplot as plt
 
-# Transform: convert images to tensors and normalize pixel values
 transform = transforms.Compose([
-    transforms.ToTensor(),  # Convert PIL image to tensor
+    transforms.Resize((28, 28)),
+    transforms.ToTensor(),
+    transforms.Normalize((0.1307,), (0.3081,))
 ])
 
-# Download and load MNIST training and test datasets
 try:
     train_dataset = datasets.MNIST(
         root="./data",
