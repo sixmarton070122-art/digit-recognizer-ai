@@ -1,4 +1,4 @@
-import torch
+from torch.utils.data import random_split, DataLoader
 from torchvision import datasets, transforms
 
 transform = transforms.Compose([
@@ -23,10 +23,5 @@ except Exception as e:
     print(f"Error loading MNIST dataset: {e}")
     exit(1)
 
-print(len(train_dataset))
-print(len(test_dataset))
-print(train_dataset[0][0].shape)
-print(train_dataset[0][0].min())
-print(train_dataset[0][0].max())
-print(train_dataset[0][1])
-print(type(train_dataset[0][1]))
+train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True)
+test_dataset = DataLoader(test_dataset, batch_size=100, shuffle=True)
