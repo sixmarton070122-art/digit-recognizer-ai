@@ -47,10 +47,23 @@ optimizer = optim.Adam(
     amsgrad=False # AMSGrad variant
 )
 
+total_loss = 0
+
 for epoch in range(epochs):
+    batch_loss = 0
     for i,(images, targets) in enumerate(train_loader):        
+        optimizer.zero_grad()
         predictions = digit_recognizer(images)
         loss = criterion(predictions, targets)
         loss.backward()
         optimizer.step()
-        optimizer.zero_grad()
+
+        batch_loss += loss.item()
+    total_loss += batch_loss
+    batch_accuracy = len(train_loader[i])/batch_loss
+    print(f"---------------Batch {i}---------------")
+    print(f"      Accuracy: {batch_accuracy:.3f}")
+
+total_accuracy = len(test_dataset)/total_loss
+print(f"-----------------Total-----------------")
+print(f"      Accuracy: {total_accuracy:.3f}")
