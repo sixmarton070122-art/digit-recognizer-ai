@@ -16,19 +16,11 @@ try:
         download=True,
         transform=transform
     )
-
-    test_dataset = datasets.MNIST(
-        root="./data",
-        train=False,
-        download=True,
-        transform=transform
-    )
 except Exception as e:
     print(f"Error loading MNIST dataset: {e}")
     exit(1)
 
 train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=100)
 
 input_size=28**2
 hidden_size = 64
