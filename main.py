@@ -1,6 +1,7 @@
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from torch import optim, nn
+import torch
 
 import model
 
@@ -30,7 +31,7 @@ train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=100)
 
 input_size=28**2
-hidden_size = 49
+hidden_size = 64
 num_classes = 10
 
 digit_recognizer = model.DigitClassifier(input_size=input_size, hidden_size=hidden_size, num_classes=num_classes)
@@ -38,7 +39,7 @@ digit_recognizer = model.DigitClassifier(input_size=input_size, hidden_size=hidd
 epochs = 60
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(
-    model.parameters(),
+    digit_recognizer.parameters(),
     lr=0.001, # Learning rate
     betas=(0.9, 0.999), # Decay rates for moments
     eps=1e-8, # Numerical stability
@@ -48,7 +49,7 @@ optimizer = optim.Adam(
 
 for epoch in range(epochs):
     for i,(images, targets) in enumerate(train_loader):        
-        predictions = model(images)
+        predictions = digit_recognizer(images)
         loss = criterion(predictions, targets)
         loss.backward()
         optimizer.step()
