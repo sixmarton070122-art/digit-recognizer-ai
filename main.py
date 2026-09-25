@@ -61,9 +61,9 @@ for epoch in range(epochs):
         predicted_labels = predictions.argmax(dim=1)
         epoch_correct += (predicted_labels == targets).sum().item()
         epoch_samples += targets.size(0)
-        epoch_accuracy = epoch_correct/epoch_samples
 
-        print(f"---------------Batch {i+1}---------------")
-        print(f"      Accuracy: {epoch_accuracy:.3f}")
+    epoch_accuracy = epoch_correct/epoch_samples
+    print(f"---------------Epoch {epoch+1}---------------")
+    print(f"      Accuracy: {epoch_accuracy:.3f}")
 
 torch.save(digit_recognizer.state_dict(), "models/test.pth")
