@@ -1,5 +1,6 @@
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
+from torch import optim, nn
 
 import model
 
@@ -32,10 +33,14 @@ input_size=28**2
 hidden_size = 49
 num_classes = 10
 
-model = model.DigitClassifier(input_size=input_size, hidden_size=hidden_size, num_classes=num_classes)
+digit_recognizer = model.DigitClassifier(input_size=input_size, hidden_size=hidden_size, num_classes=num_classes)
 
 epochs = 60
+criterion = nn.CrossEntropyLoss()
 
-for epoch in epochs:
-    for i in len():
-        pass
+for epoch in range(epochs):
+    for i,(images, targets) in enumerate(train_loader):
+        x = images
+        
+        predictions = model(images)
+        loss = criterion(predictions, targets)
