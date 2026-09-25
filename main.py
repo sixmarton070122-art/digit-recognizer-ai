@@ -26,7 +26,7 @@ except Exception as e:
     exit(1)
 
 train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True)
-test_dataset = DataLoader(test_dataset, batch_size=100)
+test_loader = DataLoader(test_dataset, batch_size=100)
 
 input_size=28**2
 hidden_size = 49
