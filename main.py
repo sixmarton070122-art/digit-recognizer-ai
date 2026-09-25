@@ -26,10 +26,20 @@ except Exception as e:
     exit(1)
 
 train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True)
-test_dataset = DataLoader(test_dataset, batch_size=100)
+test_loader = DataLoader(test_dataset, batch_size=100)
 
 input_size=28**2
 hidden_size = 49
 num_classes = 10
 
 model = model.DigitClassifier(input_size=input_size, hidden_size=hidden_size, num_classes=num_classes)
+
+epochs = 60
+
+for epoch in epochs:
+    for i in len()
+
+
+
+
+
