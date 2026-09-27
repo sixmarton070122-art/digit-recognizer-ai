@@ -3,13 +3,18 @@ from torch import nn, flatten
 class DigitClassifier(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):
         super().__init__()
-        #Convolutional Layer 1
+        #Convolutional and MaxPool Layer 1
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
-        #Convolutional Layer 2
+        self.maxp1 = nn.MaxPool2d(kernel_size=2, stride=2)
+        #Convolutional and MaxPool Layer 2
         self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1)
+        self.maxp2 = nn.MaxPool2d(kernel_size=2, stride=2)
+
+        final_spatial = 28//4
+        flattened_size = 32 * (final_spatial**2)
         
         #Linear Layers
-        self.lin1 = nn.Linear(in_features=32*input_size, out_features=hidden_size)
+        self.lin1 = nn.Linear(in_features=flattened_size, out_features=hidden_size)
         self.lin2 = nn.Linear(in_features=hidden_size, out_features=16)
         
         #Output Layer
