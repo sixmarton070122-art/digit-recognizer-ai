@@ -58,4 +58,4 @@ for epoch in range(epochs):
     print(f"---------------Epoch {epoch+1}---------------")
     print(f"      Accuracy: {epoch_accuracy:.3f}")
 
-torch.save(digit_recognizer.state_dict(), "models/test.pth")
+torch.save(digit_recognizer.state_dict(), "models/test_maxp.pth")
